@@ -1,3 +1,4 @@
+import 'package:chat_app/components/my_textfiled.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
@@ -8,7 +9,7 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
-        title: Text("Login Page"),
+        title: const Text("Login Page"),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -17,15 +18,23 @@ class LoginPage extends StatelessWidget {
           Icon(Icons.message,
               size: 60, color: Theme.of(context).colorScheme.primary),
 
-          SizedBox(height: 50),
+          const SizedBox(height: 50),
           // Welcome back message
           Text("Welcome back! you've been missed",
               style: TextStyle(
                   color: Theme.of(context).colorScheme.primary, fontSize: 16)),
 
-          SizedBox(height: 25),
+          const SizedBox(height: 25),
           // Email input
-          TextField(),
+          MyTextfiled(
+            hintText: "Email",
+            obscureText: false,
+          ),
+          //passWord input
+          MyTextfiled(
+            hintText: "PassWord ..",
+            obscureText: true,
+          ),
         ],
       ),
     );

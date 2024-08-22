@@ -1,11 +1,16 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class MyTextfiled extends StatelessWidget {
   final String hintText;
   final bool obscureText;
+  final TextEditingController controller;
   const MyTextfiled(
-      {super.key, required this.hintText, required this.obscureText});
+      {super.key,
+      required this.hintText,
+      required this.obscureText,
+      required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +18,7 @@ class MyTextfiled extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 25.0),
       child: TextField(
         obscureText: obscureText,
+        controller: controller,
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
             borderSide:

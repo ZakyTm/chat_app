@@ -1,8 +1,11 @@
+import 'package:chat_app/components/my_button.dart';
 import 'package:chat_app/components/my_textfiled.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +32,24 @@ class LoginPage extends StatelessWidget {
           MyTextfiled(
             hintText: "Email",
             obscureText: false,
+            controller: emailController,
           ),
           //passWord input
           MyTextfiled(
             hintText: "PassWord ..",
             obscureText: true,
+            controller: passwordController,
+          ),
+          const SizedBox(height: 25),
+          // Login button
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              MyButton(text: "Login"),
+              const SizedBox(height: 10),
+              MyButton(text: "Register"),
+            ],
           ),
         ],
       ),

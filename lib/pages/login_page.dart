@@ -46,9 +46,11 @@ class LoginPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              MyButton(text: "Login"),
+              MyButton(text: "Login", onTap: login),
               const SizedBox(height: 10),
-              MyButton(text: "Register"),
+              MyButton(
+                text: "Register",
+              ),
             ],
           ),
         ],

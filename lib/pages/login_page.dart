@@ -7,6 +7,10 @@ class LoginPage extends StatelessWidget {
   final TextEditingController passwordController = TextEditingController();
   LoginPage({super.key});
 
+  // login method
+
+  void login() {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,9 +52,11 @@ class LoginPage extends StatelessWidget {
             children: [
               MyButton(text: "Login", onTap: login),
               const SizedBox(height: 10),
-              MyButton(
-                text: "Register",
-              ),
+              // telling the user if he's not a member he should register
+              Text("Not a member? Register now",
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.primary,
+                      fontSize: 16)),
             ],
           ),
         ],

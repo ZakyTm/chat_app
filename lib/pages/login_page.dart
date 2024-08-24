@@ -53,10 +53,23 @@ class LoginPage extends StatelessWidget {
               MyButton(text: "Login", onTap: login),
               const SizedBox(height: 10),
               // telling the user if he's not a member he should register
-              Text("Not a member? Register now",
-                  style: TextStyle(
-                      color: Theme.of(context).colorScheme.primary,
-                      fontSize: 16)),
+              Row(
+                children: [
+                  Text(
+                    "Not a member? ",
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.primary,
+                        fontSize: 16),
+                  ),
+                  Text(
+                    "Register now",
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.primary,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
             ],
           ),
         ],

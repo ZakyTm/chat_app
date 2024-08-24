@@ -40,12 +40,15 @@ class RegisterPage extends StatelessWidget {
             obscureText: false,
             controller: emailController,
           ),
+          const SizedBox(height: 5),
           //passWord input
           MyTextfiled(
             hintText: "PassWord ..",
             obscureText: true,
             controller: passwordController,
           ),
+          const SizedBox(height: 5),
+          //Confirm passWord
           MyTextfiled(
             hintText: "Confirm your password",
             obscureText: true,
@@ -66,13 +69,13 @@ class RegisterPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Not a member? ",
+                    "Already have an account ",
                     style: TextStyle(
                         color: Theme.of(context).colorScheme.primary,
                         fontSize: 16),
                   ),
                   Text(
-                    "Register now",
+                    "Login now",
                     style: TextStyle(
                         color: Theme.of(context).colorScheme.primary,
                         fontSize: 16,

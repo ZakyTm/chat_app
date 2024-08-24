@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class LoginPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  
+
   LoginPage({super.key});
 
   // login method
@@ -28,10 +28,11 @@ class LoginPage extends StatelessWidget {
 
           const SizedBox(height: 50),
           // Welcome back message
-          Text("Welcome back! you've been missed",
-              style: TextStyle(
-                  color: Theme.of(context).colorScheme.primary, fontSize: 16),),
-          
+          Text(
+            "Welcome back! you've been missed",
+            style: TextStyle(
+                color: Theme.of(context).colorScheme.primary, fontSize: 16),
+          ),
 
           const SizedBox(height: 25),
           // Email input
@@ -46,7 +47,7 @@ class LoginPage extends StatelessWidget {
             obscureText: true,
             controller: passwordController,
           ),
-         
+
           const SizedBox(height: 25),
           // Login button
           Column(

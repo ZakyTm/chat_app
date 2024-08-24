@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 class RegisterPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
   RegisterPage({super.key});
 
   void register() {}
@@ -24,10 +26,12 @@ class RegisterPage extends StatelessWidget {
               size: 60, color: Theme.of(context).colorScheme.primary),
 
           const SizedBox(height: 50),
-          // Welcome back message
-          Text("Welcome back! you've been missed",
-              style: TextStyle(
-                  color: Theme.of(context).colorScheme.primary, fontSize: 16)),
+          // Creating an account
+          Text(
+            "Let's create an account for you!!?",
+            style: TextStyle(
+                color: Theme.of(context).colorScheme.primary, fontSize: 16),
+          ),
 
           const SizedBox(height: 25),
           // Email input
@@ -41,6 +45,11 @@ class RegisterPage extends StatelessWidget {
             hintText: "PassWord ..",
             obscureText: true,
             controller: passwordController,
+          ),
+          MyTextfiled(
+            hintText: "Confirm your password",
+            obscureText: true,
+            controller: confirmPasswordController,
           ),
           const SizedBox(height: 25),
           // Login button

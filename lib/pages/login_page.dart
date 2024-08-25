@@ -6,7 +6,10 @@ class LoginPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  LoginPage({super.key});
+  //tap to go to register page
+  final void Function()? onTap;
+
+  LoginPage({super.key, required this.onTap});
 
   // login method
 
@@ -65,12 +68,15 @@ class LoginPage extends StatelessWidget {
                         color: Theme.of(context).colorScheme.primary,
                         fontSize: 16),
                   ),
-                  Text(
-                    "Register now",
-                    style: TextStyle(
-                        color: Theme.of(context).colorScheme.primary,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold),
+                  GestureDetector(
+                    onTap: onTap,
+                    child: Text(
+                      "Register now",
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ],
               ),

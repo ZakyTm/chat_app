@@ -1,3 +1,4 @@
+import 'package:chat_app/auth/auth_service.dart';
 import 'package:chat_app/components/my_button.dart';
 import 'package:chat_app/components/my_textfiled.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,28 @@ class LoginPage extends StatelessWidget {
 
   // login method
 
-  void login() {}
+  void login(BuildContext context) async {
+    // auth service
+    final authService = AuthService();
+    try {
+      await authService.signInWithEmailPassword(
+          emailController.text, passwordController.text);
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (context)=> AlertDialog(
+          title: const Text("Error"),
+          content: Text(e.toString()),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text("OK"),
+            ),
+          ],
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +78,10 @@ class LoginPage extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              MyButton(text: "Login", onTap: login),
+              MyButton(
+                text: "Login",
+                onTap: () => login(context),
+              ),
               const SizedBox(height: 10),
               // telling the user if he's not a member he should register
               Row(

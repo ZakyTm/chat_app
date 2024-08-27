@@ -1,3 +1,5 @@
+import 'package:chat_app/auth/Login_or_register.dart';
+import 'package:chat_app/pages/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -10,22 +12,10 @@ class AuthGate extends StatelessWidget {
       body: StreamBuilder(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (snapshot.hasData) {
-            return const Center(
-              child: Text("User is logged in"),
-            );
-          } else if (snapshot.hasError) {
-            return const Center(
-              child: Text("Something went wrong"),
-            );
+          if (snapshot.hasData) {
+            return const HomePage();
           } else {
-            return const Center(
-              child: Text("User is not logged in"),
-            );
+            return LoginOrRegister();
           }
         },
       ),

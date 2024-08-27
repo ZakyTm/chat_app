@@ -1,3 +1,4 @@
+import 'package:chat_app/auth/auth_service.dart';
 import 'package:chat_app/components/my_button.dart';
 import 'package:chat_app/components/my_textfiled.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,15 @@ class RegisterPage extends StatelessWidget {
   final void Function()? onTap;
   RegisterPage({super.key, required this.onTap});
 
-  void register() {}
+  void register(BuildContext context) async {
+    final _auth = AuthService();
+    if (passwordController.text == confirmPasswordController.text) {
+      try {
+        _auth.signUpWithEmailPassword(
+            emailController.text, passwordController.text);
+      } catch (e) {}
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

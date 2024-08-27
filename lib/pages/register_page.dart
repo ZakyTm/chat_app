@@ -15,11 +15,36 @@ class RegisterPage extends StatelessWidget {
 
   void register(BuildContext context) async {
     final _auth = AuthService();
+    // if the passwords match => we create the user
     if (passwordController.text == confirmPasswordController.text) {
       try {
         _auth.signUpWithEmailPassword(
             emailController.text, passwordController.text);
-      } catch (e) {}
+      } catch (e) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text("Error"),
+            content: Text(e.toString()),
+          ),
+        );
+      }
+    }
+    // if the passwords don't match => we show an error message
+    else {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text("Error"),
+          content: const Text("Passwords don't match"),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text("OK"),
+            ),
+          ],
+        ),
+      );
     }
   }
 
@@ -73,7 +98,7 @@ class RegisterPage extends StatelessWidget {
             children: [
               MyButton(
                 text: "Register",
-                onTap: register,
+                onTap: () => register(context),
               ),
               const SizedBox(height: 10),
               // telling the user if he's not a member he should register

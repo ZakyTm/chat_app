@@ -1,3 +1,4 @@
+import 'package:chat_app/pages/settings_page.dart';
 import 'package:flutter/material.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -43,6 +44,12 @@ class MyDrawer extends StatelessWidget {
                     leading: const Icon(Icons.settings),
                     onTap: () {
                       Navigator.pop(context);
+
+                      // navigate to the settings page
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SettingsPage()));
                     },
                   ),
                 ),

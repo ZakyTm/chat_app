@@ -1,4 +1,4 @@
-import 'package:chat_app/auth/auth_service.dart';
+import 'package:chat_app/services/auth/auth_service.dart';
 import 'package:chat_app/components/my_button.dart';
 import 'package:chat_app/components/my_textfiled.dart';
 import 'package:flutter/material.dart';
@@ -14,11 +14,11 @@ class RegisterPage extends StatelessWidget {
   RegisterPage({super.key, required this.onTap});
 
   void register(BuildContext context) async {
-    final _auth = AuthService();
+    final auth = AuthService();
     // if the passwords match => we create the user
     if (passwordController.text == confirmPasswordController.text) {
       try {
-        _auth.signUpWithEmailPassword(
+        auth.signUpWithEmailPassword(
             emailController.text, passwordController.text);
       } catch (e) {
         showDialog(

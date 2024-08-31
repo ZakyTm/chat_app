@@ -1,35 +1,31 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ChatService {
-  // instance of auth
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  //get instance of firestore
 
-  // sign in
-  Future<UserCredential> signInWithEmailPassword(String email, password) async {
-    try {
-      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-          email: email, password: password);
-      return userCredential;
-    } on FirebaseAuthException catch (e) {
-      throw Exception(e.code);
-    }
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+//get user stream
+  Stream<List<Map<String, dynamic>>> getUserStream() {
+    return firestore.collection("users").snapshots().map(
+      (snapshot) {
+        return snapshot.docs.map(
+          (doc) {
+            //got through each individual user
+            //return the data of each user
+            final user = doc.data();
+            return user;
+          },
+        ).toList();
+      },
+    );
   }
 
-  // sign up
-  Future<UserCredential> signUpWithEmailPassword(String email, password) async {
-    try {
-      UserCredential userCredential = await _auth
-          .createUserWithEmailAndPassword(email: email, password: password);
-      return userCredential;
-    } on FirebaseAuthException catch (e) {
-      throw Exception(e.code);
-    }
-  }
+  //get all chats
 
-  // sign out
-  Future<void> signOut() async {
-    return await _auth.signOut();
-  }
-  // errors
+  //get chat by id
+
+  // send a message
+
+  // get messages by chat id
 }

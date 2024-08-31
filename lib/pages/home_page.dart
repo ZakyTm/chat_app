@@ -1,4 +1,5 @@
 import 'package:chat_app/components/my_drawer.dart';
+import 'package:chat_app/components/user_tile.dart';
 import 'package:chat_app/services/auth/auth_service.dart';
 import 'package:chat_app/services/chat/chat_service.dart';
 
@@ -19,7 +20,7 @@ class HomePage extends StatelessWidget {
         title: const Text("Home"),
       ),
       drawer: const MyDrawer(),
-      body: buildUserList(),
+      body: _buildUserList(),
     );
   }
 
@@ -42,8 +43,19 @@ class HomePage extends StatelessWidget {
         }
 
         // if there is a data
-        return ListView(children: []);
+        return ListView(
+          children: snapshot.data!
+              .map<Widget>((userData) => buildUserListItem)
+              .toList(),
+        );
       },
     );
+  }
+
+  Widget buildUserListItem(
+      Map<String, dynamic> userData, BuildContext context) {
+    // display all users except the current logged in user
+
+    return UserTile();
   }
 }

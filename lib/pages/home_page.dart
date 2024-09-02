@@ -57,7 +57,8 @@ class HomePage extends StatelessWidget {
       Map<String, dynamic> userData, BuildContext context) {
     // display all users except the current logged in user
 
-    return UserTile(
+    if (userData["email"] != authService.getCurrentUserEmail()!.email) {
+      return UserTile(
         text: userData["email"],
         onTap: () {
           // tapped on a user -> go to chat page
@@ -68,6 +69,10 @@ class HomePage extends StatelessWidget {
                   receiverEmail: userData["email"],
                 ),
               ));
-        });
+        },
+      );
+    } else {
+      return Container();
+    }
   }
 }

@@ -49,7 +49,7 @@ class AuthService {
 
   
   // get current user email
-  User? getCurrentUserEmail() {
+  User? getCurrentUserEmail() { 
     return _auth.currentUser;
   }
 }

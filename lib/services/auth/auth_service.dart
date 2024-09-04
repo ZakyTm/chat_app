@@ -6,6 +6,11 @@ class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+//get the current loged in user
+  User? getCurrentUser() {
+    return _auth.currentUser;
+  }
+
   // sign in
   Future<UserCredential> signInWithEmailPassword(String email, password) async {
     try {
@@ -32,8 +37,8 @@ class AuthService {
 
       // save user info in  a separate doc
       _firestore.collection("users").doc(userCredential.user!.uid).set({
-        "email": email,
         "uid": userCredential.user!.uid,
+        "email": email,
       });
 
       return userCredential;
@@ -45,11 +50,5 @@ class AuthService {
   // sign out
   Future<void> signOut() async {
     return await _auth.signOut();
-  }
-
-  
-  // get current user email
-  User? getCurrentUserEmail() { 
-    return _auth.currentUser;
   }
 }

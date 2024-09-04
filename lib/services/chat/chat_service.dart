@@ -33,7 +33,9 @@ class ChatService {
     final String currentUserID = auth.currentUser!.uid;
     final String currentUserEmail = auth.currentUser!.email!;
     final Timestamp timestamp = Timestamp.now();
+
     // creat a new message
+    
 
     // custruct chat room ID for the two users (sorted to ensure uniqueness)
 

@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 
 class ChatPage extends StatelessWidget {
   final String receiverEmail;
-  ChatPage({super.key, required this.receiverEmail});
+  final String receiverID;
+  ChatPage({super.key, required this.receiverEmail, required this.receiverID});
 
   // text controller for the message
   final TextEditingController messageController = TextEditingController();
@@ -13,6 +14,16 @@ class ChatPage extends StatelessWidget {
 
   final ChatService chatService = ChatService();
   final AuthService authService = AuthService();
+
+  // send message
+  void sendMessage() async {
+    // if there is something isde the textfield
+    if (messageController.text.isNotEmpty) {
+      //send the message
+      await chatService.sendMessage(receiverID, messageController.text);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

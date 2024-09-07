@@ -1,5 +1,6 @@
 import 'package:chat_app/services/auth/auth_service.dart';
 import 'package:chat_app/services/chat/chat_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class ChatPage extends StatelessWidget {
@@ -47,8 +48,31 @@ class ChatPage extends StatelessWidget {
   Widget _buildMessageList() {
     String senderID = authService.getCurrentUser()!.uid;
     return StreamBuilder(
-      stream: chatService.getMessages(receiverID)
-      builder: 
+      stream: chatService.getMessages(receiverID, senderID),
+      builder: (context, snapshot) {
+        //errors
+        if (snapshot.hasError) {
+          return const Text("Something went wrong, try again !!!");
+        }
+
+        //loading
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const CircularProgressIndicator();
+        }
+
+        //return list view of messages
+        return ListView(
+          children:
+              snapshot.data!.docs.map((doc) => buildMessageItem(doc)).toList(),
+        );
+      },
     );
+  }
+
+  // build message item widget
+
+  Widget buildMessageItem(DocumentSnapshot doc) {
+    Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+    return Text(data["message"]);
   }
 }

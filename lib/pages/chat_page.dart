@@ -21,6 +21,9 @@ class ChatPage extends StatelessWidget {
     if (messageController.text.isNotEmpty) {
       //send the message
       await chatService.sendMessage(receiverID, messageController.text);
+
+      // clear the contrller
+      messageController.clear();
     }
   }
 
@@ -30,6 +33,19 @@ class ChatPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(receiverEmail),
       ),
+      body: Column(
+        children: [
+          Expanded(
+            child: _buildMessageList(),
+          ),
+        ],
+      ),
     );
+  }
+
+  // build message list
+  Widget _buildMessageList() {
+    String senderID = authService.getCurrentUser()!.uid;
+    return StreamBuilder(stream: , builder: builder)
   }
 }

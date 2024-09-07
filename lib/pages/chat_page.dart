@@ -46,6 +46,9 @@ class ChatPage extends StatelessWidget {
   // build message list
   Widget _buildMessageList() {
     String senderID = authService.getCurrentUser()!.uid;
-    return StreamBuilder(stream: , builder: builder)
+    return StreamBuilder(
+      stream: chatService.getMessages(receiverID)
+      builder: 
+    );
   }
 }

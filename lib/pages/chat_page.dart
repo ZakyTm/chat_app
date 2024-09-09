@@ -85,8 +85,8 @@ class ChatPage extends StatelessWidget {
     // align message to the right if sender is the current user, otherwise left
     var alignment =
         isCurrentUser ? Alignment.centerRight : Alignment.centerLeft;
-        
-    return Text(data["message"]);
+
+    return Container(alignment: alignment, child: Text(data["message"]));
   }
 
   // build message intpu
@@ -103,9 +103,16 @@ class ChatPage extends StatelessWidget {
         ),
 
         // send button
-        IconButton(
-          onPressed: sendMessage,
-          icon: const Icon(Icons.send),
+        Container(
+          decoration: const BoxDecoration(
+            color: Colors.blue,
+            shape: BoxShape.circle,
+          ),
+          margin: const EdgeInsets.only(right: 25),
+          child: IconButton(
+            onPressed: sendMessage,
+            icon: const Icon(Icons.send, color: Colors.white),
+          ),
         ),
       ],
     );
